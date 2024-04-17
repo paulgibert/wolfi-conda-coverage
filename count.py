@@ -65,8 +65,8 @@ def main():
         matches[wpkg] = cpkg
     
     n_matches = len([v for v in matches.values() if v is not None])
-    print(f"{n_matches} of {len(wolfi_pkgs)} wolfi packages were found in conda")
-
+    print(f"{n_matches} of {len(wolfi_pkgs)} wolfi packages were found in conda.")
+    print(f"{len(conda_pkgs) - n_matches} conda packages had no wolfi equivalent.")
     write_matches(args.out, matches)
 
 
