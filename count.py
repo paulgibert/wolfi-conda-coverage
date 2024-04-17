@@ -29,7 +29,7 @@ def read_wolfi_packages(file_name: str) -> List[str]:
 def read_conda_packages(file_name: str) -> List[str]:
     with open(file_name, "r", encoding="utf-8") as f:
         packages = f.readlines()
-    return [p.strip("\n") for p in packages]
+    return [p.strip("\n") for p in packages if not p.startswith("r-")]
 
 
 def get_conda_equivalent(package: str, conda_packages: List[str]) -> bool:
@@ -68,7 +68,6 @@ def main():
     print(f"{n_matches} of {len(wolfi_pkgs)} wolfi packages were found in conda.")
     print(f"{len(conda_pkgs) - n_matches} conda packages had no wolfi equivalent.")
     write_matches(args.out, matches)
-
 
 
 if __name__ == "__main__":
